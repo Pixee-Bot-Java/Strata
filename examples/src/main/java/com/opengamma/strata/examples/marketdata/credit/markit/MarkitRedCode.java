@@ -54,7 +54,7 @@ public final class MarkitRedCode
    * @return the equivalent RED code
    */
   public static MarkitRedCode from(StandardId id) {
-    Preconditions.checkArgument(id.getScheme().equals(MARKIT_REDCODE_SCHEME));
+    Preconditions.checkArgument(MARKIT_REDCODE_SCHEME.equals(id.getScheme()));
     return MarkitRedCode.of(id.getValue());
   }
 

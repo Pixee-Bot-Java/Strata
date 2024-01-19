@@ -318,10 +318,10 @@ public final class Frequency
   @FromString
   public static Frequency parse(String toParse) {
     ArgChecker.notNull(toParse, "toParse");
-    if (toParse.equalsIgnoreCase("Term") ||
-        toParse.equalsIgnoreCase("T") ||
-        toParse.equalsIgnoreCase("0T") ||
-        toParse.equalsIgnoreCase("1T")) {
+    if ("Term".equalsIgnoreCase(toParse) ||
+        "T".equalsIgnoreCase(toParse) ||
+        "0T".equalsIgnoreCase(toParse) ||
+        "1T".equalsIgnoreCase(toParse)) {
       return TERM;
     }
     String prefixed = toParse.startsWith("P") ? toParse : "P" + toParse;

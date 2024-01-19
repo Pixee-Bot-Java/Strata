@@ -386,10 +386,10 @@ public final class RatesCalibrationCsvLoader {
       return CurveNodeDate.of(LoaderUtils.parseDate(dateStr));
     }
     String dateUpper = dateStr.toUpperCase(Locale.ENGLISH);
-    if (dateUpper.equals("END")) {
+    if ("END".equals(dateUpper)) {
       return CurveNodeDate.END;
     }
-    if (dateUpper.equals("LASTFIXING")) {
+    if ("LASTFIXING".equals(dateUpper)) {
       return CurveNodeDate.LAST_FIXING;
     }
     throw new ParseFailureException(

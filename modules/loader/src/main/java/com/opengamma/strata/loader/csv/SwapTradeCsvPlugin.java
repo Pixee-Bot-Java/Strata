@@ -82,7 +82,7 @@ final class SwapTradeCsvPlugin implements TradeCsvParserPlugin {
 
   @Override
   public boolean isAdditionalRow(CsvRow baseRow, CsvRow additionalRow) {
-    return additionalRow.getField(TRADE_TYPE_FIELD).toUpperCase(Locale.ENGLISH).equals("VARIABLE");
+    return "VARIABLE".equals(additionalRow.getField(TRADE_TYPE_FIELD).toUpperCase(Locale.ENGLISH));
   }
 
   @Override

@@ -146,7 +146,7 @@ final class HolidayCalendarIniLookup
     List<LocalDate> holidays = new ArrayList<>();
     Set<LocalDate> workingDays = new HashSet<>();
     for (String key : section.keys()) {
-      if (key.equals(WEEKEND_KEY)) {
+      if (WEEKEND_KEY.equals(key)) {
         continue;
       }
       String value = section.value(key);

@@ -469,7 +469,7 @@ public final class TradeCsvLoader {
           continue;
         }
         // better error for VARIABLE
-        if (typeUpper.equals("VARIABLE")) {
+        if ("VARIABLE".equals(typeUpper)) {
           failures.add(FailureItem.of(
               FailureReason.PARSING,
               "CSV trade file '{fileName}' contained a 'Variable' type at line {lineNumber} " +

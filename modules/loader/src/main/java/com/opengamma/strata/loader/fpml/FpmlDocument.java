@@ -497,7 +497,7 @@ public final class FpmlDocument {
     }
     Period period = parsePeriod(baseEl);
     Optional<XmlElement> dayTypeEl = baseEl.findChild("dayType");
-    boolean calendarDays = period.isZero() || (dayTypeEl.isPresent() && dayTypeEl.get().getContent().equals("Calendar"));
+    boolean calendarDays = period.isZero() || (dayTypeEl.isPresent() && "Calendar".equals(dayTypeEl.get().getContent()));
     BusinessDayAdjustment bda1 = parseBusinessDayAdjustments(baseEl);
     BusinessDayAdjustment bda2 = baseEl.findChild("relativeDateAdjustments")
         .map(el -> parseBusinessDayAdjustments(el))
@@ -532,7 +532,7 @@ public final class FpmlDocument {
       throw new FpmlParseException("Expected days-based period but found '{value}'", period);
     }
     Optional<XmlElement> dayTypeEl = baseEl.findChild("dayType");
-    boolean calendarDays = period.isZero() || (dayTypeEl.isPresent() && dayTypeEl.get().getContent().equals("Calendar"));
+    boolean calendarDays = period.isZero() || (dayTypeEl.isPresent() && "Calendar".equals(dayTypeEl.get().getContent()));
     BusinessDayConvention fixingBdc = convertBusinessDayConvention(baseEl.getChild("businessDayConvention").getContent());
     HolidayCalendarId calendar = parseBusinessCenters(baseEl);
     if (calendarDays) {
@@ -725,7 +725,7 @@ public final class FpmlDocument {
     // FpML content: ('periodMultiplier', 'period')
     String multiplier = baseEl.getChild("periodMultiplier").getContent();
     String unit = baseEl.getChild("period").getContent();
-    if (unit.equals("T")) {
+    if ("T".equals(unit)) {
       return Frequency.TERM;
     }
     return convertFrequency(multiplier, unit);

@@ -289,7 +289,7 @@ final class SwapFpmlParserPlugin
       }
       Optional<XmlElement> dayTypeEl = paymentOffsetEl.get().findChild("dayType");
       boolean fixingCalendarDays = period.isZero() ||
-          (dayTypeEl.isPresent() && dayTypeEl.get().getContent().equals("Calendar"));
+          (dayTypeEl.isPresent() && "Calendar".equals(dayTypeEl.get().getContent()));
       if (fixingCalendarDays) {
         paymentScheduleBuilder.paymentDateOffset(DaysAdjustment.ofCalendarDays(period.getDays(), payAdjustment));
       } else {
@@ -687,13 +687,13 @@ final class SwapFpmlParserPlugin
   // Converts an FpML 'StubPeriodTypeEnum' to a {@code StubConvention}.
   private StubConvention parseStubConvention(XmlElement baseEl, FpmlDocument document) {
     String str = baseEl.getContent();
-    if (str.equals("ShortInitial")) {
+    if ("ShortInitial".equals(str)) {
       return StubConvention.SHORT_INITIAL;
-    } else if (str.equals("ShortFinal")) {
+    } else if ("ShortFinal".equals(str)) {
       return StubConvention.SHORT_FINAL;
-    } else if (str.equals("LongInitial")) {
+    } else if ("LongInitial".equals(str)) {
       return StubConvention.LONG_INITIAL;
-    } else if (str.equals("LongFinal")) {
+    } else if ("LongFinal".equals(str)) {
       return StubConvention.LONG_FINAL;
     } else {
       throw new FpmlParseException(
@@ -733,9 +733,9 @@ final class SwapFpmlParserPlugin
     }
     double rate = document.parseDecimal(scheduleEl.getChild("notionalStepRate"));
     String relativeTo = scheduleEl.findChild("stepRelativeTo").map(el -> el.getContent()).orElse("Previous");
-    if (relativeTo.equals("Previous")) {
+    if ("Previous".equals(relativeTo)) {
       return ValueStepSequence.of(start, end, freq, ValueAdjustment.ofDeltaMultiplier(rate));
-    } else if (relativeTo.equals("Initial")) {
+    } else if ("Initial".equals(relativeTo)) {
       // data model does not support 'relative to initial' but can calculate amount here
       double amount = initialValue * rate;
       return ValueStepSequence.of(start, end, freq, ValueAdjustment.ofDeltaAmount(amount));
@@ -749,9 +749,9 @@ final class SwapFpmlParserPlugin
   // Converts an FpML 'PayRelativeToEnum' to a {@code PaymentRelativeTo}.
   private PaymentRelativeTo parsePayRelativeTo(XmlElement baseEl) {
     String str = baseEl.getContent();
-    if (str.equals("CalculationPeriodStartDate")) {
+    if ("CalculationPeriodStartDate".equals(str)) {
       return PaymentRelativeTo.PERIOD_START;
-    } else if (str.equals("CalculationPeriodEndDate")) {
+    } else if ("CalculationPeriodEndDate".equals(str)) {
       return PaymentRelativeTo.PERIOD_END;
     } else {
       throw new FpmlParseException(
@@ -762,9 +762,9 @@ final class SwapFpmlParserPlugin
   // Converts and FpML 'NegativeInterestRateTreatmentEnum' to a {@code NegativeRateMethod}.
   private NegativeRateMethod parseNegativeInterestRateTreatment(XmlElement baseEl) {
     String str = baseEl.getContent();
-    if (str.equals("NegativeInterestRateMethod")) {
+    if ("NegativeInterestRateMethod".equals(str)) {
       return NegativeRateMethod.ALLOW_NEGATIVE;
-    } else if (str.equals("ZeroInterestRateMethod")) {
+    } else if ("ZeroInterestRateMethod".equals(str)) {
       return NegativeRateMethod.NOT_NEGATIVE;
     } else {
       throw new FpmlParseException(
@@ -776,9 +776,9 @@ final class SwapFpmlParserPlugin
   // Converts an FpML 'AveragingMethodEnum' to a {@code IborRateResetMethod}.
   private IborRateResetMethod parseAveragingMethod(XmlElement baseEl) {
     String str = baseEl.getContent();
-    if (str.equals("Unweighted")) {
+    if ("Unweighted".equals(str)) {
       return IborRateResetMethod.UNWEIGHTED;
-    } else if (str.equals("Weighted")) {
+    } else if ("Weighted".equals(str)) {
       return IborRateResetMethod.WEIGHTED;
     } else {
       throw new FpmlParseException(
@@ -789,9 +789,9 @@ final class SwapFpmlParserPlugin
   // Converts an FpML 'ResetRelativeToEnum' to a {@code FixingRelativeTo}.
   private FixingRelativeTo parseResetRelativeTo(XmlElement baseEl) {
     String str = baseEl.getContent();
-    if (str.equals("CalculationPeriodStartDate")) {
+    if ("CalculationPeriodStartDate".equals(str)) {
       return FixingRelativeTo.PERIOD_START;
-    } else if (str.equals("CalculationPeriodEndDate")) {
+    } else if ("CalculationPeriodEndDate".equals(str)) {
       return FixingRelativeTo.PERIOD_END;
     } else {
       throw new FpmlParseException(

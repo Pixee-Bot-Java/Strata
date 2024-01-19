@@ -121,7 +121,7 @@ public final class StringCharSource extends BeanCharSource implements ImmutableB
     } else {
       // handle all other char sources
       String str = other.toString();
-      if (str.equals("CharSource.empty()")) {
+      if ("CharSource.empty()".equals(str)) {
         return EMPTY;
       } else if (str.startsWith("Files.asByteSource(")) {
         // extract the file name from toString()

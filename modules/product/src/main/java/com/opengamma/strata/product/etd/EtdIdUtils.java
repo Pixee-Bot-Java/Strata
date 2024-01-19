@@ -258,7 +258,7 @@ public final class EtdIdUtils {
    */
   public static SplitEtdContractSpecId splitId(EtdContractSpecId specId) {
     ArgChecker.notNull(specId, "specId");
-    if (!specId.getStandardId().getScheme().equals(ETD_SCHEME)) {
+    if (!ETD_SCHEME.equals(specId.getStandardId().getScheme())) {
       throw new IllegalArgumentException("ETD ID cannot be parsed: " + specId);
     }
     String value = specId.getStandardId().getValue();
@@ -271,9 +271,9 @@ public final class EtdIdUtils {
       throw new IllegalArgumentException("ETD ID cannot be parsed: " + specId);
     }
     EtdType type = null;
-    if (split.get(0).equals("F")) {
+    if ("F".equals(split.get(0))) {
       type = EtdType.FUTURE;
-    } else if (split.get(0).equals("O")) {
+    } else if ("O".equals(split.get(0))) {
       type = EtdType.OPTION;
     } else {
       throw new IllegalArgumentException("ETD ID cannot be parsed: " + specId);
@@ -299,7 +299,7 @@ public final class EtdIdUtils {
   public static SplitEtdId splitId(SecurityId securityId) {
     ArgChecker.notNull(securityId, "securityId");
     StandardId standardId = securityId.getStandardId();
-    if (!standardId.getScheme().equals(ETD_SCHEME)) {
+    if (!ETD_SCHEME.equals(standardId.getScheme())) {
       throw new IllegalArgumentException("ETD ID cannot be parsed: " + securityId);
     }
 

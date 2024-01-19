@@ -118,13 +118,13 @@ final class SwaptionFpmlParserPlugin implements FpmlParserPlugin {
     SwaptionExercise exercise = null;
     AdjustableDate expiryDate;
     // exercise dates
-    if (exerciseEl.getName().equals("bermudaExercise")) {
+    if ("bermudaExercise".equals(exerciseEl.getName())) {
       AdjustableDates adjDates = parseBermudaDates(exerciseEl, document);
       LocalDate expiry = adjDates.getUnadjusted().get(adjDates.getUnadjusted().size() - 1);
       expiryDate = AdjustableDate.of(expiry, adjDates.getAdjustment());
       exercise = SwaptionExercise.ofBermudan(adjDates, swapStartOffset);
 
-    } else if (exerciseEl.getName().equals("americanExercise")) {
+    } else if ("americanExercise".equals(exerciseEl.getName())) {
       expiryDate = parseExpirationDate(exerciseEl, document);
       LocalDate commencementDate = parseCommencementDate(exerciseEl, document);
       exercise = SwaptionExercise.ofAmerican(

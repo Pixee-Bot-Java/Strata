@@ -202,7 +202,7 @@ public final class ArrayByteSource extends BeanByteSource implements ImmutableBe
     } else {
       // handle all other byte sources
       String str = other.toString();
-      if (str.equals("ByteSource.empty()")) {
+      if ("ByteSource.empty()".equals(str)) {
         return EMPTY;
       } else if (str.startsWith("Files.asByteSource(")) {
         // extract the file name from toString()

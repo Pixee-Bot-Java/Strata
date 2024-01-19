@@ -36,10 +36,10 @@ public class CurrencyAmountTokenEvaluator extends TokenEvaluator<CurrencyAmount>
       String firstToken,
       List<String> remainingTokens) {
 
-    if (firstToken.equalsIgnoreCase(CURRENCY_FIELD)) {
+    if (CURRENCY_FIELD.equalsIgnoreCase(firstToken)) {
       return EvaluationResult.success(amount.getCurrency(), remainingTokens);
     }
-    if (firstToken.equalsIgnoreCase(AMOUNT_FIELD)) {
+    if (AMOUNT_FIELD.equalsIgnoreCase(firstToken)) {
       // Can be rendered directly - retains the currency for formatting purposes
       return EvaluationResult.success(amount, remainingTokens);
     }

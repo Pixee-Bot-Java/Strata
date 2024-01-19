@@ -83,7 +83,7 @@ final class SwaptionTradeCsvPlugin implements TradeCsvParserPlugin, TradeCsvWrit
 
   @Override
   public boolean isAdditionalRow(CsvRow baseRow, CsvRow additionalRow) {
-    return additionalRow.getField(TRADE_TYPE_FIELD).toUpperCase(Locale.ENGLISH).equals("VARIABLE");
+    return "VARIABLE".equals(additionalRow.getField(TRADE_TYPE_FIELD).toUpperCase(Locale.ENGLISH));
   }
 
   @Override
@@ -157,7 +157,7 @@ final class SwaptionTradeCsvPlugin implements TradeCsvParserPlugin, TradeCsvWrit
   // parses the settlement cash/physical
   private static SwaptionSettlement parseSettlement(CsvRow row) {
     String settlementType = row.getValue(PAYOFF_SETTLEMENT_TYPE_FIELD);
-    if (settlementType.equalsIgnoreCase(PHYSICAL)) {
+    if (PHYSICAL.equalsIgnoreCase(settlementType)) {
       return PhysicalSwaptionSettlement.DEFAULT;
     }
     CashSwaptionSettlementMethod method = CashSwaptionSettlementMethod.of(settlementType);

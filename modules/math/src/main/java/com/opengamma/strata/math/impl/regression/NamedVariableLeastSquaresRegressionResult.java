@@ -81,7 +81,7 @@ public class NamedVariableLeastSquaresRegressionResult extends LeastSquaresRegre
     }
     int i = hasIntercept() ? 1 : 0;
     for (String name : getIndependentVariableNames()) {
-      if (name.equals(INTERCEPT_STRING)) {
+      if (INTERCEPT_STRING.equals(name)) {
         sum += betas[0];
       } else {
         if (!namesAndValues.containsKey(name) || namesAndValues.get(name) == null) {

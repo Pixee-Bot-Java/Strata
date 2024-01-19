@@ -257,7 +257,7 @@ public final class Messages {
       for (String entry : TEMPLATE_LOCATION_SPLITTER.split(templateLocation)) {
         String attrName = substringBeforeFirst(entry, ":");
         String remainder = substringAfterFirst(entry, ":");
-        if (attrName.equals("+")) {
+        if ("+".equals(attrName)) {
           int pos = Integer.parseInt(remainder);
           buf.append(message.substring(lastPos, pos));
           return buf.toString();
@@ -305,7 +305,7 @@ public final class Messages {
           case 2: {
             // +:len, need to increase pos
             String attrName = parts.get(0);
-            if (!attrName.equals("+")) {
+            if (!"+".equals(attrName)) {
               return "";
             }
             int pos = Integer.parseInt(parts.get(1));

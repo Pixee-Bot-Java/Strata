@@ -176,11 +176,11 @@ public final class ExtendedEnum<T extends Named> {
         throw new IllegalArgumentException("Unable to find enum provider class: " + key, ex);
       }
       String value = section.value(key);
-      if (value.equals("constants")) {
+      if ("constants".equals(value)) {
         // extract public static final constants
         builder.add(parseConstants(enumType, cls));
 
-      } else if (value.equals("lookup")) {
+      } else if ("lookup".equals(value)) {
         // class is a named lookup
         if (!NamedLookup.class.isAssignableFrom(cls)) {
           throw new IllegalArgumentException("Enum provider class must implement NamedLookup " + cls.getName());
@@ -195,7 +195,7 @@ public final class ExtendedEnum<T extends Named> {
           throw new IllegalArgumentException("Invalid enum provider constructor: new " + cls.getName() + "()", ex);
         }
 
-      } else if (value.equals("instance")) {
+      } else if ("instance".equals(value)) {
         // class has a named lookup INSTANCE static field
         try {
           Field field = cls.getDeclaredField("INSTANCE");
