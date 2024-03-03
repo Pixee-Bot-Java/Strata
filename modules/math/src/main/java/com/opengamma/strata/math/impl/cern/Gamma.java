@@ -220,7 +220,9 @@ public class Gamma extends AbstractContinousDistribution {
               v + a5) * v + a4) * v + a3) * v + a2) * v + a1) * v;
         }								  // Step 7. Quotient acceptance
         if (Math.log(1.0 - u) <= q)
-          return (gds / lambda);
+          {
+              return (gds / lambda);
+          }
       }
 
       for (;;) {              			      // Step 8. Double exponential deviate t
